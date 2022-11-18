@@ -19,6 +19,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.26.0
   '@typescript-eslint/parser': ^5.26.0
   '@walletconnect/legacy-client': 2.0.0-rc.0
+  '@walletconnect/legacy-types': 2.0.0-rc.0
   '@walletconnect/sign-client': 2.0.0-rc.4
   '@walletconnect/types': 2.0.0-rc.4
   '@zxing/browser': ^0.1.1
@@ -35,6 +36,7 @@ specifiers:
   jest: ^28.1.0
   jest-environment-jsdom: ^28.1.0
   jest-styled-components: ^7.0.8
+  net: ^1.0.2
   next: 12.1.6
   next-i18next: ^11.3.0
   prettier: ^2.6.2
@@ -42,6 +44,7 @@ specifiers:
   react-dom: 18.1.0
   react-transition-group: ^4.4.2
   styled-components: ^5.3.5
+  tls: ^0.0.1
   typescript: 4.6.4
   uuid: ^8.3.2
 
@@ -56,12 +59,14 @@ dependencies:
   axios: 0.27.2
   bignumber.js: 9.0.2
   eip55: 2.1.0
+  net: 1.0.2
   next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
   next-i18next: 11.3.0_2mgcgz5qhsdxw4fgpqzqeafmkq
   react: 18.1.0
   react-dom: 18.1.0_react@18.1.0
   react-transition-group: 4.4.2_ef5jwxihqo6n7gxfmzogljlgcm
   styled-components: 5.3.5_ef5jwxihqo6n7gxfmzogljlgcm
+  tls: 0.0.1
   uuid: 8.3.2
 
 devDependencies:
@@ -79,6 +84,7 @@ devDependencies:
   '@types/uuid': 8.3.4
   '@typescript-eslint/eslint-plugin': 5.30.7_ciic4xh5kkdfdoofdogiruhtw4
   '@typescript-eslint/parser': 5.30.7_utdtartgf6fqqgkivzeynh76la
+  '@walletconnect/legacy-types': 2.0.0-rc.0
   '@walletconnect/types': 2.0.0-rc.4
   babel-plugin-styled-components: 2.0.7_styled-components@5.3.5
   babel-plugin-transform-remove-console: 6.9.4
@@ -1847,7 +1853,6 @@ packages:
     resolution: {integrity: sha512-9dDfZ+jTOycOSm4+HmcDj5T8qotqY96BaEU/LdQ6H2M/mBoYLkPLMlaNLoqIpSm+ebOj9CF0T6B251ZAZoo7/Q==}
     dependencies:
       '@walletconnect/jsonrpc-types': 1.0.1
-    dev: false
 
   /@walletconnect/legacy-utils/2.0.0-rc.0:
     resolution: {integrity: sha512-Ta2p0BgSQE/IxZAH7RaBKjunl1vE3jPt6VXtBLv20YccJ0VKVJLp4dboAME0hKcC3x7GQcNvg67nPztoVLOU2A==}
@@ -4556,6 +4561,10 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
+  /net/1.0.2:
+    resolution: {integrity: sha512-kbhcj2SVVR4caaVnGLJKmlk2+f+oLkjqdKeQlmUtz6nGzOpbcobwVIeSURNgraV/v3tlmGIX82OcPCl0K6RbHQ==}
+    dev: false
+
   /next-i18next/11.3.0_2mgcgz5qhsdxw4fgpqzqeafmkq:
     resolution: {integrity: sha512-xl0oIRtiVrk9ZaWBRUbNk/prva4Htdu59o9rFWzd9ax/KemaDVuTTuBZTQMkmXohUQk/MJ7w1rV/mICL6TzyGw==}
     engines: {node: '>=12'}
@@ -5547,6 +5556,10 @@ packages:
     resolution: {integrity: sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==}
     dependencies:
       '@popperjs/core': 2.11.5
+    dev: false
+
+  /tls/0.0.1:
+    resolution: {integrity: sha512-GzHpG+hwupY8VMR6rYsnAhTHqT/97zT45PG8WD5eTT1lq+dFE0nN+1PYpsoBcHJgSmTz5ceK2Cv88IkPmIPOtQ==}
     dev: false
 
   /tmpl/1.0.5:
