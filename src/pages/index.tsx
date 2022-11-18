@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react'
-import type { GetServerSideProps, NextPage } from 'next'
-import { useRouter } from 'next/router'
-import Head from 'next/head'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { getDefaultLanguage } from '@/helpers/generic'
+import type { GetServerSideProps, NextPage } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
-import { Container } from '@/styles/styles'
 import { WalletConnect } from '@/components/WalletConnect'
+import { Container } from '@/styles/styles'
 import { NetworkConfig } from '@/types/types'
-import { SDKProvider } from 'src/shared/SDKProvider'
 import { Flex } from '@ledgerhq/react-ui'
 import { useTranslation } from 'next-i18next'
+import { SDKProvider } from 'src/shared/SDKProvider'
 
 export const getServerSideProps: GetServerSideProps = async ({
 	query,
