@@ -54,8 +54,8 @@ export default function Sessions({ sessions, goToConnect }: SessionsProps) {
 	const { handleDisconnect, cleanup } = useWalletConnectV1Utils()
 
 	const disconnect = useCallback(async () => {
+		handleDisconnect()
 		if (v1Session && v1Session.peerMeta) {
-			handleDisconnect()
 			cleanup()
 		}
 		await Promise.all(
@@ -68,12 +68,9 @@ export default function Sessions({ sessions, goToConnect }: SessionsProps) {
 					},
 				}),
 			),
-		)
-			.catch((err) => console.error(err))
-			.finally(() => {
-				clearSessions()
-				closeModal()
-			})
+		).catch((err) => console.error(err))
+		clearSessions()
+		closeModal()
 	}, [sessions])
 
 	if (

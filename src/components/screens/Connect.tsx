@@ -98,6 +98,7 @@ export function Connect({ initialURI, onConnect, mode }: ConnectProps) {
 						if (
 							isV1(url.toString()) &&
 							session &&
+							session.peerMeta &&
 							sessionUri !== url.toString()
 						) {
 							setInputValue(url.toString())

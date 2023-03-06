@@ -16,6 +16,7 @@ import Tabs from './Tabs'
 import useHydratationV1 from '@/hooks/v1/useHydratationV1'
 import { wc } from '@/helpers/walletConnectV1.util'
 import { useV1Store, v1Selector } from '@/storage/v1.store'
+import useWalletConnectEventsManagerV1 from '@/hooks/v1/useWalletConnectEventsManagerV1'
 
 const WalletConnectContainer = styled.div`
 	display: flex;
@@ -54,7 +55,7 @@ export default function Home({
 }: WalletConnectProps) {
 	const { initialized } = useHydratation()
 	const { initializedV1 } = useHydratationV1(initialURI)
-	const { router, tabsIndexes } = useNavigation()
+	const { router, tabsIndexes, navigate, routes } = useNavigation()
 	const routerQueryData = router?.query?.data
 	const initialTab = routerQueryData
 		? JSON.parse(String(routerQueryData))?.tab
@@ -78,6 +79,7 @@ export default function Home({
 					setUri(inputValue)
 					const uri = new URL(inputValue)
 					await startProposal(uri.toString(), setWalletConnectClient)
+					navigate(routes.sessionProposalV1)
 				} catch (error: unknown) {
 					setErrorValue(t('error.invalidUri'))
 				} finally {
@@ -113,9 +115,12 @@ export default function Home({
 				index: tabsIndexes.sessions,
 				title: t('sessions.title'),
 				badge:
-					sessions?.length || wc?.session?.connected
+					sessions?.length ||
+					(wc?.session?.connected && wc?.session?.peerMeta)
 						? (sessions.length || 0) +
-						  (wc?.session?.connected ? 1 : 0)
+						  (wc?.session?.connected && wc?.session?.peerMeta
+								? 1
+								: 0)
 						: undefined,
 				Component: (
 					<WalletConnectInnerContainer>

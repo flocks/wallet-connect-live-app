@@ -62,14 +62,13 @@ export default function SessionProposal() {
 	const { handleSwitchAccount, handleDecline, handleAccept } =
 		useWalletConnectV1Utils()
 
-	const proposal = useV1Store(v1Selector.selectProposal)
-	const proposer = proposal?.params[0]?.peerMeta
-
 	if (!hydratedV1) return null
 	if (!wc) {
 		navigate(routes.home)
 		return null
 	}
+
+	const proposer = wc?.session?.peerMeta
 
 	return (
 		<Flex

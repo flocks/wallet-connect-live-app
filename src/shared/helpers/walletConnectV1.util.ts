@@ -6,6 +6,13 @@ import WalletConnect from '@walletconnect/client'
 
 export let wc: WalletConnect
 
+const isSessionConnected = (wc: WalletConnectClient) =>
+	wc &&
+	wc.session &&
+	wc.connected &&
+	wc.session.connected &&
+	wc.session.peerMeta
+
 export async function restoreClient(
 	session: any,
 	networks: NetworkConfig[],
@@ -15,7 +22,7 @@ export async function restoreClient(
 	) => void,
 	setSession: (session: any) => void,
 ): Promise<void> {
-	if (wc && wc.session && wc.connected) {
+	if (wc && wc.connected) {
 		await wc.killSession()
 	}
 
@@ -27,7 +34,7 @@ export async function restoreClient(
 				networkConfig.currency === selectedAccount?.currency,
 		)
 
-		if (networkConfig) {
+		if (networkConfig && isSessionConnected(wc)) {
 			wc.updateSession({
 				chainId: networkConfig.chainId,
 				accounts: [selectedAccount.address],
@@ -45,10 +52,29 @@ export async function createClient(
 		walletConnectClient?: WalletConnect | undefined,
 	) => void,
 ): Promise<void> {
-	if (wc && wc.session && wc.connected) {
-		await wc.killSession()
-	}
+	try {
+		if (wc && wc.connected) {
+			alert('kill session' + wc.session)
+			// const a = await wc.killSession()
+		}
 
-	wc = new WalletConnectClient({ uri })
-	setWalletConnectClient?.(wc)
+		wc = new WalletConnectClient({ uri })
+		alert(JSON.stringify(wc))
+		if (!wc.connected) {
+			alert(
+				'create session' +
+					JSON.stringify(wc.session) +
+					'connected :' +
+					wc.connected,
+			)
+			// await wc.createSession()
+		} else {
+			await wc.killSession()
+		}
+		alert(JSON.stringify(wc))
+
+		setWalletConnectClient?.(wc)
+	} catch (err) {
+		alert(err)
+	}
 }

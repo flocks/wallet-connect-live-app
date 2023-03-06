@@ -44,7 +44,13 @@ export default function useInitializationV1(initialURI?: string) {
 	}, [])
 
 	useEffect(() => {
-		if (selectedAccount && wc && wc.connected) {
+		if (
+			selectedAccount &&
+			wc &&
+			wc.connected &&
+			wc.session &&
+			wc.session.peerMeta
+		) {
 			const networkConfig = networks.find(
 				(networkConfig) =>
 					networkConfig.currency === selectedAccount.currency,

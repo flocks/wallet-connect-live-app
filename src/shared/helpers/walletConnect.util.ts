@@ -45,7 +45,7 @@ export async function startProposal(
 			// handle usual wallet connect URIs
 			case 'wc:': {
 				if (isV1(uri)) {
-					createClient(url.toString(), setWalletConnectClient)
+					await createClient(url.toString(), setWalletConnectClient)
 				} else {
 					await pair(uri)
 				}
